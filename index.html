@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}首页{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}">
+{% endblock %}
+
+{% block main %}
+    <ul class="water-list-group">
+        {% for water in waters %}
+            <li>
+                <div class="avatar-group"><!-- 头像盒子 -->
+                    <a href="{{ url_for('detail',water_id=water.id) }}"><img src="{{ url_for('static', filename='images/logo.png') }}" alt="" class="avatar"></a>
+                </div>
+                <div class="water-group"><!-- 内容盒子 -->
+                    <p class="water-title"><a href="{{ url_for('detail',water_id=water.id) }}">{{ water.title }}</a></p>
+                    <p class="water-content">{{ water.content }}</p>
+                    <div class="water-info"><!-- 发布人信息 -->
+                        <span class="water-author">{{ water.author.username }}</span>
+                        <span class="water-time">{{ water.create_time }}</span>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
